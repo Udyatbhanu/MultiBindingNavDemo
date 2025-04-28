@@ -25,8 +25,8 @@ fun AppNav(
     val navigationViewModel = hiltViewModel<NavigationViewModel>()
 
     LaunchedEffect(Unit) {
-        navigationViewModel.navigationCommands.collect {  command ->
-            when(command){
+        navigationViewModel.navigationCommands.collect { command ->
+            when (command) {
                 is NavigationCommand.Navigate -> navController.navigate(command.route)
                 NavigationCommand.Back -> navController.popBackStack()
             }
@@ -41,11 +41,5 @@ fun AppNav(
                 entry.Content(navController)
             }
         }
-//        composable(ScreenRoute.Home.route) {
-//            HomeScreen()
-//        }
-//        composable(ScreenRoute.Settings.route) {
-//            SettingsScreen()
-//        }
     }
 }

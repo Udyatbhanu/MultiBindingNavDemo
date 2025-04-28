@@ -1,8 +1,0 @@
-package com.bhanu.baliyar.multibindingsnavdemo.presentation.screens
-
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-
-@HiltViewModel
-class SettingsScreenViewModel @Inject constructor(){
-}

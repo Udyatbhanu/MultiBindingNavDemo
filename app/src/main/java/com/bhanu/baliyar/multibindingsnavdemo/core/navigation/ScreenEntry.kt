@@ -10,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 interface ScreenEntry {
 
     val route: String
-
     @Composable
     fun Content(navController: NavHostController)
 }
