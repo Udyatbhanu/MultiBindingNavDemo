@@ -51,9 +51,9 @@ class HomeScreenEntry @Inject constructor() : ScreenEntry {
 fun HomeScreen() {
     val viewModel = hiltViewModel<HomeScreenViewModel>()
     val state by viewModel.state.collectAsState()
-    LaunchedEffect(Unit) {
-        viewModel.fetchProducts()
-    }
+//    LaunchedEffect(Unit) {
+//        viewModel.fetchProducts()
+//    }
     when (val result = state) {
         is HomeScreenState.Success -> ProductsGrid(result.data)
         is HomeScreenState.Error -> ErrorView(result.message)

@@ -11,6 +11,7 @@ import com.bhanu.baliyar.multibindingsnavdemo.presentation.screens.HomeScreenSta
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,14 +24,16 @@ class HomeScreenViewModel @Inject constructor(
 ) :
     ViewModel() {
     private val _state = MutableStateFlow<HomeScreenState>(HomeScreenState.Loading)
-    val state: StateFlow<HomeScreenState> = _state
+    val state: StateFlow<HomeScreenState> = _state.asStateFlow()
 
+    init{
+        fetchProducts()
+    }
     fun fetchProducts() {
 
         repository.getProducts().catch {
             HomeScreenState.Error(message = "There was an error processing the response")
-        }
-            .onEach { result ->
+        }.onEach { result ->
                 _state.value =
                     when (result) {
                         is ResponseWrapper.Success -> {
